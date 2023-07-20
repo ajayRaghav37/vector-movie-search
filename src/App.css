@@ -42,8 +42,7 @@ form {
 }
 
 input[type="text"] {
-  width: 100%;
-  max-width: 1000px;
+  width: 50%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px 0px 0px 5px;
@@ -59,6 +58,7 @@ button {
   border-radius: 0px 5px 5px 0px;
   cursor: pointer;
   font-size: 18px;
+  font-family: monospace;
   transform: translateY(1px);
 }
 
@@ -151,4 +151,18 @@ img {
 
 .flexDiv {
   flex: 1;
+}
+
+.dropdown {
+  display: inline-block;
+}
+
+select {
+  padding: 9px;
+  transform: translateY(1px);
+  margin: 0px;
+  font-size: 18px;
+  border: none;
+  font-family: monospace;
+  background-color: #00ED64;
 }

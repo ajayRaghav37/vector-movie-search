@@ -15,9 +15,14 @@ const MovieApp = () => {
 
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedOption, setSelectedOption] = useState("Vector");
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
+  };
+
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -29,7 +34,7 @@ const MovieApp = () => {
   const fetchMovies = async () => {
     try {
       const response = await fetch(
-        `https://ap-south-1.aws.data.mongodb-api.com/app/vector-vkqrr/endpoint/findMovie?s=${encodeURIComponent(searchQuery)}`
+        `https://ap-south-1.aws.data.mongodb-api.com/app/vector-vkqrr/endpoint/findMovie?m=${selectedOption}&s=${encodeURIComponent(searchQuery)}`
       );
 
       const similarMovies = (await response.json()).results;
@@ -61,16 +66,22 @@ const MovieApp = () => {
           onChange={handleChange}
           placeholder="Enter plot here..."
         />
-        <button type="submit">Search</button>
+        <div className="dropdown">
+          <select value={selectedOption} onChange={handleOptionChange}>
+            <option value="Standard">NORMAL</option>
+            <option value="Vector">VECTOR</option>
+          </select>
+        </div>
+        <button type="submit">SEARCH</button>
       </form>
       <div className="movies">
         {movies.map((movie) => (
           <div key={movie._id} className="movie">
             <div className='rating'>
               <h2 className='title'>{movie.title}</h2>
-              <p>{movie.imdb.rating || "N/A"}</p>
+              <p>{(movie.imdb || { rating: 0 }).rating || "N/A"}</p>
             </div>
-            <h4 className='year'>{movie.year || 'Unknown'} | {movie.countries[0]} | {movie.languages[0]}</h4>
+            <h4 className='year'>{movie.year || 'Unknown'} | {(movie.countries || [""])[0]} | {(movie.languages || [""])[0]}</h4>
             <h5><em>Search score: {movie.score}</em></h5>
             <p className='plot'>{movie.fullplot || movie.plot}</p>
             <img src={movie.poster || "https://as1.ftcdn.net/v2/jpg/03/95/42/94/1000_F_395429472_LNyOoV7eRXm76HIIBBHOciyHEtiwS1Ed.jpg"} alt={`${movie.title} Poster`} onError={({ currentTarget }) => {

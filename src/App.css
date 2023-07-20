@@ -192,3 +192,7 @@ img {
 .show-dropdown .dropdown-content {
   display: block;
 }
+
+.submit-button:disabled {
+  color:#888;
+}

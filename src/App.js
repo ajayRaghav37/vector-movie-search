@@ -4,8 +4,8 @@ import React, { useState } from "react";
 
 const MovieApp = () => {
   const dummyMovie = {
-    title: "Rate Limit Exceeded",
-    plot: "Try again after some time",
+    title: "No movie to show",
+    plot: "",
     poster: "https://as1.ftcdn.net/v2/jpg/03/95/42/94/1000_F_395429472_LNyOoV7eRXm76HIIBBHOciyHEtiwS1Ed.jpg",
     imdb: { rating: 0 },
     languages: [""],
@@ -17,20 +17,65 @@ const MovieApp = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedOption, setSelectedOption] = useState("Vector");
   const [showOptions, setShowOptions] = useState(false);
+  const [showCode, setShowCode] = useState(false);
+  const [code, setCode] = useState("");
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
+    setShowCode(false);
   };
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
     setShowOptions(false);
+    setShowCode(false);
   };
 
   const handleDropdownToggle = (e) => {
     e.preventDefault();
     setShowOptions((prevShow) => !prevShow);
   };
+
+  const updateCode = (e) => {
+    e.preventDefault();
+    if (showCode) {
+      setShowCode(false);
+      return;
+    }
+
+    let currCode;
+
+    if (selectedOption === 'Vector') {
+      currCode = `
+  // getEmbeddings function can leverage OpenAI API or something similar
+
+  {
+    "$search": {
+      "index": "default",
+      "knnBeta": {
+        "vector": getEmbeddings("${searchQuery}"),
+        "path": "plot_embedding",
+        "k": 5
+      }
+    }
+  }`;
+    }
+    else {
+      currCode = `
+  {
+    "$search": {
+      "index": "default",
+      "text": {
+        "query": "${searchQuery}",
+        "path": "plot"
+      }
+    }
+  }`;
+    }
+
+    setCode(currCode);
+    setShowCode(true);
+  }
 
   const handleSubmit = (e) => {
     setMovies([]);
@@ -47,9 +92,16 @@ const MovieApp = () => {
       const similarMovies = (await response.json()).results;
 
       if (Array.isArray(similarMovies)) {
-        setMovies(similarMovies);
+        if (similarMovies.length > 0) {
+          setMovies(similarMovies);
+        }
+        else {
+          dummyMovie.plot = 'Try again with a different search query';
+          setMovies([dummyMovie]);
+        }
       }
       else {
+        dummyMovie.plot = 'This could be due to exceeded rate limit. Please try again after some time.';
         setMovies([dummyMovie]);
       }
     } catch (error) {
@@ -78,6 +130,7 @@ const MovieApp = () => {
             {selectedOption === "Standard" ? "Standard Search" : "Vector Search"}
           </button>
           <button className="dropdown-button arrow" onClick={handleDropdownToggle}>▼</button>
+          <button className="dropdown-button code-button" onClick={updateCode}>{showCode ? `{-}` : `{+}`}</button>
           {showOptions && (
             <div className="dropdown-content">
               <button onClick={() => handleOptionChange("Standard")}>Standard Search</button>
@@ -86,6 +139,18 @@ const MovieApp = () => {
           )}
         </div>
       </form>
+      {
+        showCode &&
+        <div className='container'>
+          <div className='flexDiv'></div>
+          <div className='code'>
+            <pre>
+              <code>{code}</code>
+            </pre>
+          </div>
+          <div className='flexDiv'></div>
+        </div>
+      }
       <div className="movies">
         {movies.map((movie) => (
           <div key={movie._id} className="movie">

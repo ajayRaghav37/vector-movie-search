@@ -50,18 +50,6 @@ input[type="text"] {
   margin-bottom: 10px;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #00ED64;
-  color: #222;
-  border: none;
-  border-radius: 0px 5px 5px 0px;
-  cursor: pointer;
-  font-size: 18px;
-  font-family: monospace;
-  transform: translateY(1px);
-}
-
 .movies {
   display: flex;
   flex-wrap: wrap;
@@ -92,7 +80,7 @@ img {
 }
 
 .rating {
-  display:flex;
+  display: flex;
   margin-bottom: 20px;
 }
 
@@ -146,7 +134,7 @@ img {
 .powered-text {
   margin: 5px;
   font-size: 14px;
-  color:#888;
+  color: #888;
 }
 
 .flexDiv {
@@ -155,14 +143,52 @@ img {
 
 .dropdown {
   display: inline-block;
+  position: relative;
 }
 
-select {
-  padding: 9px;
-  transform: translateY(1px);
-  margin: 0px;
+.dropdown-button {
+  padding: 10px 20px;
   font-size: 18px;
-  border: none;
-  font-family: monospace;
   background-color: #00ED64;
+  min-width: 200px;
+  border: none;
+  transform: translateY(0.5px);
+  cursor: pointer;
+  color: #222;
+  font-family: monospace;
+}
+
+.dropdown-content {
+  position: absolute;
+  margin-top: 2px;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  z-index: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content button {
+  display: block;
+  padding: 10px 16px;
+  font-size: 18px;
+  min-width: 215.5px;
+  border: none;
+  margin-bottom: 1px;
+  background-color: #00ED64;
+  font-family: monospace;
+  color: #222;
+  cursor: pointer;
+}
+
+.arrow {
+  font-size: 17.5px;
+  padding: 10px 2px;
+  margin-left: 1px;
+  min-width: unset;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.show-dropdown .dropdown-content {
+  display: block;
 }

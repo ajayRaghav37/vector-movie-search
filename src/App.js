@@ -16,13 +16,20 @@ const MovieApp = () => {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedOption, setSelectedOption] = useState("Vector");
+  const [showOptions, setShowOptions] = useState(false);
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+    setShowOptions(false);
+  };
+
+  const handleDropdownToggle = (e) => {
+    e.preventDefault();
+    setShowOptions((prevShow) => !prevShow);
   };
 
   const handleSubmit = (e) => {
@@ -67,12 +74,17 @@ const MovieApp = () => {
           placeholder="Enter plot here..."
         />
         <div className="dropdown">
-          <select value={selectedOption} onChange={handleOptionChange}>
-            <option value="Standard">NORMAL</option>
-            <option value="Vector">VECTOR</option>
-          </select>
+          <button className="dropdown-button" type="submit">
+            {selectedOption === "Standard" ? "Standard Search" : "Vector Search"}
+          </button>
+          <button className="dropdown-button arrow" onClick={handleDropdownToggle}>▼</button>
+          {showOptions && (
+            <div className="dropdown-content">
+              <button onClick={() => handleOptionChange("Standard")}>Standard Search</button>
+              <button onClick={() => handleOptionChange("Vector")}>Vector Search</button>
+            </div>
+          )}
         </div>
-        <button type="submit">SEARCH</button>
       </form>
       <div className="movies">
         {movies.map((movie) => (

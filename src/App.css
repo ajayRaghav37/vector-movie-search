@@ -1,0 +1,154 @@
+.App {
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 0;
+  color: #eee;
+  padding: 0;
+  background: #1e2125;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  max-width: 1000px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0px 0px 5px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #00ED64;
+  color: #222;
+  border: none;
+  border-radius: 0px 5px 5px 0px;
+  cursor: pointer;
+  font-size: 18px;
+  transform: translateY(1px);
+}
+
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie {
+  max-width: 300px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 5px;
+  border-color: #888;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+p {
+  margin: 5px 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.rating {
+  display:flex;
+  margin-bottom: 20px;
+}
+
+.rating p {
+  background-color: #e2ad00;
+  color: #222;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  max-height: 20px;
+  margin: 0px 0px 0px 10px;
+}
+
+.plot {
+  height: 150px;
+  color: #ccc;
+  margin-bottom: 40px;
+  overflow-y: hidden;
+}
+
+.plot:hover {
+  overflow-y: auto;
+}
+
+.title {
+  white-space: nowrap;
+  flex: 1;
+  overflow-x: hidden;
+}
+
+.title:hover {
+  overflow-x: auto;
+  margin-bottom: -20px;
+}
+
+.year {
+  color: #ccc;
+}
+
+.subject {
+  font-size: 36px;
+}
+
+.powered {
+  margin-left: 30px;
+  display: flex;
+  margin-top: 20px;
+}
+
+.powered-text {
+  margin: 5px;
+  font-size: 14px;
+  color:#888;
+}
+
+.flexDiv {
+  flex: 1;
+}

@@ -118,6 +118,7 @@ img {
 
 .container {
   display: flex;
+  margin-bottom: 20px;
 }
 
 .flexDiv {
@@ -191,7 +192,14 @@ img {
 .code {
   background: #1a1a1a;
   padding: 10px;
+  max-width: 90%;
+  overflow-x: auto;
   padding-top: 0px;
   min-width: 720px;
-  margin-bottom: 20px;
+  margin-left: 15px;
+}
+
+.chart {
+  background: #1e2125;
+  border: none;
 }

@@ -143,7 +143,10 @@ const MovieApp = () => {
         showCode &&
         <div className='container'>
           <div className='flexDiv'></div>
-          <iframe className='chart' width="480" height="360" src="https://charts.mongodb.com/charts-ajayraghav-qlztg/embed/charts?id=64bbc28b-48a7-459b-8129-70f16c33e921&maxDataAge=300&theme=dark&autoRefresh=true"></iframe>
+          {
+            (new URLSearchParams(window.location.search)).get('dev') &&
+            <iframe className='chart' width="480" height="360" src="https://charts.mongodb.com/charts-ajayraghav-qlztg/embed/charts?id=64bbc28b-48a7-459b-8129-70f16c33e921&maxDataAge=300&theme=dark&autoRefresh=true"></iframe>
+          }
           <div className='code'>
             <pre>
               <code>{code}</code>

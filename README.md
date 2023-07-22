@@ -7,14 +7,14 @@ Try out the app here: [https://vector-vkqrr.mongodbstitch.com/](https://vector-v
 ## Prerequisites
 [Sign up with email and add unique phone number to get free $5 credits on OpenAI](https://openai.com/pricing#:~:text=Start%20for%20free)
 
-## What's it about?
+## What's Vector Search all about?
 Standard Search is based on just stemming, lemmatization and tokenization. This does not produce relevant results as it is based on keywords more or less.\
 Vector Search allows you to search with embeddings. Compare the results yourself.\
 \
 Try out some free text plots like:
-- __a business tycoon is captured in war zone and then gets out of it by using science__
-- __kids engage in something like monopoly which brings animals out of it causing havoc__
-- __a man who forgets things after some time takes revenge for the killer of his beloved__
+- _a business tycoon is captured in war zone and then gets out of it by using science_
+- _kids engage in something like monopoly which brings animals out of it causing havoc_
+- _a man who forgets things after some time takes revenge for the killer of his beloved_
 
 ## Available Scripts
 

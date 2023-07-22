@@ -231,24 +231,32 @@ pre {
   overflow-x: auto;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
 input[type="text"]:-webkit-autofill {
-  border: none;
-  outline: none;
+  border: 1px solid #ccc !important;
+  border: none !important;
+  outline: none !important;
 }
 
 input[type="password"]:-webkit-autofill {
-  border: none;
-  outline: none;
-  background-color: #1e2125;
-  color: #eee;
+  border: none !important;
+  outline: none !important;
+  background-color: #1e2125 !important;
+  color: #eee !important;
 }
 
 input[type="text"]:focus {
-  border: none;
-  outline: none;
+  border: 1px solid #ccc !important;
+  border: none !important;
+  outline: none !important;
 }
 
 input[type="password"]:focus {
-  border: none;
-  outline: none;
+  border: none !important;
+  outline: none !important;
 }

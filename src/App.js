@@ -126,6 +126,7 @@ const MovieApp = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          autoFocus
           value={searchQuery}
           onChange={handleChange}
           placeholder="Enter plot here..."

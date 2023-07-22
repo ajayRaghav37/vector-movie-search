@@ -15,8 +15,8 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 ## App Service Components
-[Triggers function](/Triggers/functions/Atlas_Triggers_openAI_scheduled_1689945708.js)
-[Vector Search function](/Vector/functions/vector.js)
+- [Triggers function](/Triggers/functions/Atlas_Triggers_openAI_scheduled_1689945708.js)
+- [Vector Search function](/Vector/functions/vector.js)
 
 ## Deploying Changes
 `sh deploy.sh`

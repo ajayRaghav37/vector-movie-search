@@ -239,7 +239,6 @@ input:focus {
 
 input[type="text"]:-webkit-autofill {
   border: 1px solid #ccc !important;
-  border: none !important;
   outline: none !important;
 }
 
@@ -252,7 +251,6 @@ input[type="password"]:-webkit-autofill {
 
 input[type="text"]:focus {
   border: 1px solid #ccc !important;
-  border: none !important;
   outline: none !important;
 }
 

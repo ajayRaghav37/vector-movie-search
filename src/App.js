@@ -15,6 +15,7 @@ const MovieApp = () => {
 
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [apiKey, setApiKey] = useState("");
   const [selectedOption, setSelectedOption] = useState("Vector");
   const [showOptions, setShowOptions] = useState(false);
   const [showCode, setShowCode] = useState(false);
@@ -23,6 +24,10 @@ const MovieApp = () => {
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
     setShowCode(false);
+  };
+
+  const handleKeyChange = (e) => {
+    setApiKey(e.target.value);
   };
 
   const handleOptionChange = (option) => {
@@ -86,7 +91,7 @@ const MovieApp = () => {
   const fetchMovies = async () => {
     try {
       const response = await fetch(
-        `https://ap-south-1.aws.data.mongodb-api.com/app/vector-vkqrr/endpoint/findMovie?m=${selectedOption}&s=${encodeURIComponent(searchQuery)}`
+        `https://ap-south-1.aws.data.mongodb-api.com/app/vector-vkqrr/endpoint/findMovie?m=${selectedOption}&key=${apiKey}&s=${encodeURIComponent(searchQuery)}`
       );
 
       const similarMovies = (await response.json()).results;
@@ -141,13 +146,26 @@ const MovieApp = () => {
       </form>
       {
         showCode &&
-        <div className='container'>
+        <div className='container code-box'>
           <div className='flexDiv'></div>
           {
             (new URLSearchParams(window.location.search)).get('dev') &&
             <iframe className='chart' width="480" height="360" src="https://charts.mongodb.com/charts-ajayraghav-qlztg/embed/charts?id=64bbc28b-48a7-459b-8129-70f16c33e921&maxDataAge=300&theme=dark&autoRefresh=true"></iframe>
           }
           <div className='code'>
+            <div className='container'>
+              <input
+                type="password"
+                value={apiKey}
+                onChange={handleKeyChange}
+                placeholder="Enter your own OpenAI API Key"
+              />
+            </div>
+            <div>
+              <div className='open-ai-link'>
+                <a href="https://openai.com/pricing#:~:text=Start%20for%20free">Sign up with email and add unique phone number to get free $5 credits on OpenAI</a>
+              </div>
+            </div>
             <pre>
               <code>{code}</code>
             </pre>

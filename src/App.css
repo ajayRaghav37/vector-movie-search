@@ -29,6 +29,27 @@ input[type="text"] {
   margin-bottom: 10px;
 }
 
+input[type="password"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1e2125;
+  color: #eee;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.open-ai-link {
+  margin: 0px 10px;
+}
+
+a {
+  font-size: 14px;
+  color: #00ED64;
+  white-space: break-spaces;
+}
+
 .movies {
   display: flex;
   flex-wrap: wrap;
@@ -118,6 +139,9 @@ img {
 
 .container {
   display: flex;
+}
+
+.code-box {
   margin-bottom: 20px;
 }
 
@@ -193,7 +217,6 @@ img {
   background: #1a1a1a;
   padding: 10px;
   max-width: 90%;
-  overflow-x: auto;
   padding-top: 0px;
   min-width: 720px;
   margin-left: 15px;
@@ -203,3 +226,7 @@ img {
   background: #1e2125;
   border: none;
 }
+
+pre {
+  overflow-x: auto;
+} 

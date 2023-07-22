@@ -1,5 +1,4 @@
 async function getEmbedding(query, key) {
-  // Define the OpenAI API url and key.
   try {
     const url = 'https://api.openai.com/v1/embeddings';
 
@@ -10,14 +9,11 @@ async function getEmbedding(query, key) {
         'Content-Type': ['application/json']
       },
       body: JSON.stringify({
-        // The field inside your document that contains the data to embed, here it is the “plot” field from the sample movie data.
         input: query,
         model: "text-embedding-ada-002"
       })
     });
 
-    // Parse the JSON response
-    console.log(response.body.text());
     return EJSON.parse(response.body.text()).data[0].embedding;
 
   }
@@ -28,11 +24,10 @@ async function getEmbedding(query, key) {
 
 async function findSimilarDocuments(embedding) {
   const mongodb = context.services.get('Vector');
-  const db = mongodb.db('sample_mflix'); // Replace with your database name.
-  const collection = db.collection('movies'); // Replace with your collection name.
+  const db = mongodb.db('sample_mflix');
+  const collection = db.collection('movies');
 
   try {
-    // Query for similar documents.
     const documents = await collection.aggregate([
       {
         "$search": {
@@ -68,11 +63,10 @@ async function findSimilarDocuments(embedding) {
 
 async function findDocuments(q) {
   const mongodb = context.services.get('Vector');
-  const db = mongodb.db('sample_mflix'); // Replace with your database name.
-  const collection = db.collection('movies'); // Replace with your collection name.
+  const db = mongodb.db('sample_mflix');
+  const collection = db.collection('movies');
 
   try {
-    // Query for similar documents.
     const documents = await collection.aggregate([
       {
         "$search": {
@@ -119,7 +113,6 @@ async function findDocuments(q) {
   }
 }
 
-// This function is the endpoint's request handler.
 exports = async function ({ query, headers, body }, response) {
   const { s, m, key } = query;
 

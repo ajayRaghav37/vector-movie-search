@@ -32,7 +32,7 @@ input[type="text"] {
 input[type="password"] {
   flex: 1;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 5px;
   background-color: #1e2125;
   color: #eee;
@@ -229,4 +229,26 @@ img {
 
 pre {
   overflow-x: auto;
-} 
+}
+
+input[type="text"]:-webkit-autofill {
+  border: none;
+  outline: none;
+}
+
+input[type="password"]:-webkit-autofill {
+  border: none;
+  outline: none;
+  background-color: #1e2125;
+  color: #eee;
+}
+
+input[type="text"]:focus {
+  border: none;
+  outline: none;
+}
+
+input[type="password"]:focus {
+  border: none;
+  outline: none;
+}

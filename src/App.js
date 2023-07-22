@@ -8,8 +8,8 @@ const MovieApp = () => {
     plot: "",
     poster: "https://as1.ftcdn.net/v2/jpg/03/95/42/94/1000_F_395429472_LNyOoV7eRXm76HIIBBHOciyHEtiwS1Ed.jpg",
     imdb: { rating: 0 },
-    languages: [""],
-    countries: [""],
+    languages: ["N/A"],
+    countries: ["N/A"],
     score: 0
   };
 
@@ -180,7 +180,7 @@ const MovieApp = () => {
               <h2 className='title'>{movie.title}</h2>
               <p>{(movie.imdb || { rating: 0 }).rating || "N/A"}</p>
             </div>
-            <h4 className='year'>{movie.year || 'Unknown'} | {(movie.countries || [""])[0]} | {(movie.languages || [""])[0]}</h4>
+            <h4 className='year'>{movie.year || 'N/A'} | {(movie.countries || ["N/A"])[0]} | {(movie.languages || ["N/A"])[0]}</h4>
             <h5><em>Search score: {movie.score}</em></h5>
             <p className='plot'>{movie.fullplot || movie.plot}</p>
             <img src={movie.poster || "https://as1.ftcdn.net/v2/jpg/03/95/42/94/1000_F_395429472_LNyOoV7eRXm76HIIBBHOciyHEtiwS1Ed.jpg"} alt={`${movie.title} Poster`} onError={({ currentTarget }) => {

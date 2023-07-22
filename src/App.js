@@ -18,7 +18,7 @@ const MovieApp = () => {
   const [apiKey, setApiKey] = useState("");
   const [selectedOption, setSelectedOption] = useState("Vector");
   const [showOptions, setShowOptions] = useState(false);
-  const [showCode, setShowCode] = useState(false);
+  const [showCode, setShowCode] = useState(true);
   const [code, setCode] = useState("");
 
   const handleChange = (e) => {
@@ -163,7 +163,7 @@ const MovieApp = () => {
             </div>
             <div>
               <div className='open-ai-link'>
-                <a href="https://openai.com/pricing#:~:text=Start%20for%20free">Sign up with email and add unique phone number to get free $5 credits on OpenAI</a>
+                <a target='_blank' href="https://openai.com/pricing#:~:text=Start%20for%20free">Sign up with email and add unique phone number to get free $5 credits on OpenAI</a>
               </div>
             </div>
             <pre>

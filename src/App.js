@@ -118,7 +118,7 @@ const MovieApp = () => {
     <div>
       <div className='powered'>
         <div className='flexDiv'></div>
-        <img height={24} src="https://mongodb.com/favicon.ico"></img>
+        <img height={24} src="/mongo.png"></img>
         <p className='powered-text'><em>Powered by MongoDB Atlas Vector Search</em></p>
         <div className='flexDiv'></div>
       </div>

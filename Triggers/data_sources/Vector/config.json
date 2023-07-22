@@ -1,0 +1,10 @@
+{
+    "name": "Vector",
+    "type": "mongodb-atlas",
+    "config": {
+        "clusterName": "Vector",
+        "readPreference": "primary",
+        "wireProtocolEnabled": false
+    },
+    "version": 1
+}

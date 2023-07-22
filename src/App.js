@@ -131,7 +131,7 @@ const MovieApp = () => {
           placeholder="Enter plot here..."
         />
         <div className="dropdown">
-          <button className="dropdown-button submit-button" disabled={searchQuery.trim() === ''} type="submit">
+          <button className="dropdown-button submit-button" disabled={searchQuery.trim() === '' || (selectedOption === "Vector" && apiKey.trim() === '')} type="submit">
             {selectedOption === "Standard" ? "Standard Search" : "Vector Search"}
           </button>
           <button className="dropdown-button arrow" onClick={handleDropdownToggle}>▼</button>

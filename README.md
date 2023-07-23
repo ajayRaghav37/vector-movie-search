@@ -7,7 +7,7 @@ Try out the app here: [https://vector-vkqrr.mongodbstitch.com/](https://vector-v
 ## Prerequisites
 [Sign up with email and add unique phone number to get free $5 credits on OpenAI](https://openai.com/pricing#:~:text=Start%20for%20free)\
 \
-You would need to add your own API key while trying out Vector Search.
+You will have to enter your own API key while trying out Vector Search.
 
 ## What's Vector Search all about?
 Standard Search is based on just stemming, lemmatization and tokenization. This does not produce relevant results as it is based on keywords more or less.\

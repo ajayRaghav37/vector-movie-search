@@ -7,7 +7,7 @@ exports = async function () {
   const collection = db.collection('movies'); // Replace with your collection name.
 
   try {
-    const pendingDocs = await collection.aggregate([{ $match: { plot_embedding: { $exists: false }, plot: { $exists: true } } }, { $sort: { "imdb.rating": -1 } }, { $limit: 50 }]).toArray();
+    const pendingDocs = await collection.aggregate([{ $match: { plot_embedding: { $exists: false }, plot: { $exists: true } } }, { $sort: { "imdb.rating": -1 } }, { $limit: 200 }]).toArray();
 
     pendingDocs.forEach(async doc => {
       // Call OpenAI API to get the embeddings.

@@ -116,6 +116,7 @@ const MovieApp = () => {
 
   return (
     <div>
+      {movies.length === 0 && <img className='bg-image' src={"logo_large.png"} />}
       <div className='powered'>
         <div className='flexDiv'></div>
         <img height={24} src="/mongo.png"></img>

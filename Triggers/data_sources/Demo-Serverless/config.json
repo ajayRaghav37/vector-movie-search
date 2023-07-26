@@ -3,7 +3,7 @@
     "type": "mongodb-atlas",
     "config": {
         "clusterName": "Demo-Serverless",
-        "readPreference": "nearest",
+        "readPreference": "primary",
         "wireProtocolEnabled": false
     },
     "version": 1

@@ -261,7 +261,8 @@ input[type="password"]:focus {
 
 .bg-image {
   position: fixed;
-  filter: blur(20px) opacity(0.1);
+  filter: opacity(.1) grayscale(1) brightness(0);
+  -webkit-filter: opacity(.1) grayscale(1) brightness(0);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

@@ -21,8 +21,6 @@ exports = async function () {
   let promises = [];
 
   while (true) {
-    await (new Promise(resolve => setTimeout(resolve, 200)));
-
     try {
       // airbnb query
       console.log('running airbnb query');

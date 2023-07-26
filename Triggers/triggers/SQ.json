@@ -2,7 +2,7 @@
     "name": "SQ",
     "type": "SCHEDULED",
     "config": {
-        "schedule": "0 */12 * * *",
+        "schedule": "*/5 * * * *",
         "skip_catchup_events": false
     },
     "disabled": false,

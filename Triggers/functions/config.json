@@ -1,21 +1,21 @@
 [
     {
-        "name": "vector",
+        "name": "Atlas_Triggers_UP_1690372854",
         "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
+        "can_evaluate": {}
     },
     {
         "name": "Atlas_Triggers_openAI_scheduled_1689945708",
         "private": false
     },
     {
-        "name": "Atlas_Triggers_SQ_1690372459",
-        "private": false
+        "name": "vector",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
     },
     {
-        "name": "Atlas_Triggers_UP_1690372854",
-        "private": false,
-        "can_evaluate": {}
+        "name": "Atlas_Triggers_SQ_1690372459",
+        "private": false
     }
 ]

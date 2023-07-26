@@ -20,7 +20,7 @@ exports = async function () {
   let sortBy;
   let matchQuery;
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 1000; i++) {
     await (new Promise(resolve => setTimeout(resolve, 200)));
     const pickRandomQuery = Math.floor(Math.random() * 4);
 

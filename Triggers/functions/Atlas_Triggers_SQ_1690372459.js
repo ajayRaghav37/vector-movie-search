@@ -1,23 +1,88 @@
-exports = function() {
+exports = async function () {
   // Slow queries
-  /*
-    A Scheduled Trigger will always call a function without arguments.
-    Documentation on Triggers: https://www.mongodb.com/docs/atlas/app-services/triggers/overview/
 
-    Functions run by Triggers are run as System users and have full access to Services, Functions, and MongoDB Data.
+  const dedicated = context.services.get('Demo-Cluster');
+  const serverless = context.services.get('Demo-Serverless');
+  const shared = context.services.get('Demo-Shared');
 
-    Access a mongodb service:
-    const collection = context.services.get(<SERVICE_NAME>).db("db_name").collection("coll_name");
-    const doc = collection.findOne({ name: "mongodb" });
+  while (true) {
+    pickRandomQuery = Math.floor(Math.random() * 4);
+    
+    switch (pickRandomQuery) {
+      case 0:
+        // airbnb query
+        console.log('running airbnb query');
 
-    Note: In Atlas Triggers, the service name is defaulted to the cluster name.
+        pickRandomCluster = Math.floor(Math.random() * 2);
+        cluster = [dedicated, serverless][pickRandomCluster];
+        db = cluster.db("sample_airbnb");
 
-    Call other named functions if they are defined in your application:
-    const result = context.functions.execute("function_name", arg1, arg2);
+        queryTermList = ["home", "new", "charming", "cosy"];
+        queryTerm = queryTermList[Math.floor(Math.random() * queryTermList.length)];
+        query = { description: { $regex: `.*${queryTerm}.*`, $options: "i" }, };
+        sort = {};
+        sort[queryTerm] = 1;
 
-    Access the default http client and execute a GET request:
-    const response = context.http.get({ url: <URL> })
+        res = await db.collection("listingsAndReviews").find(query).sort(sort);
+        console.log('executed');
+        break;
+      case 1:
+        // grades query
+        console.log('running grades query');
 
-    Learn more about http client here: https://www.mongodb.com/docs/atlas/app-services/functions/context/#std-label-context-http
-  */
+        pickRandomCluster = Math.floor(Math.random() * 1);
+        cluster = [dedicated][pickRandomCluster];
+        db = cluster.db("sample_training");
+
+        queryTermList = ["exam", "quiz", "homework"];
+        queryTerm = queryTermList[Math.floor(Math.random() * queryTermList.length)];
+        query = { "scores.type": queryTerm };
+        sort = { student_id: 1, class_id: 1 };
+
+        res = await db.collection("grades").find(query).sort(sort);
+        console.log('executed');
+        break;
+      case 2:
+        // mflix query
+        console.log('running movies query');
+
+        pickRandomCluster = Math.floor(Math.random() * 2);
+        cluster = [dedicated, serverless][pickRandomCluster];
+        db = cluster.db("sample_mflix");
+
+        queryFieldList = ["plot", "title", "fullplot"];
+        queryTermList = ["hero", "drama", "disaster", "horror"];
+        queryField = queryFieldList[Math.floor(Math.random() * queryFieldList.length)];
+        queryTerm = queryTermList[Math.floor(Math.random() * queryTermList.length)];
+        query = {};
+        query[queryField] = { $regex: `.*${queryTerm}.*`, $options: "i" };
+        sort = {};
+        sort[queryTerm] = 1;
+
+        res = await db.collection("movies").find(query).sort(sort);
+        console.log('executed');
+        break;
+      case 3:
+        // weather data query
+        console.log('running weather query');
+
+        pickRandomCluster = Math.floor(Math.random() * 2);
+        cluster = [dedicated, serverless][pickRandomCluster];
+        db = cluster.db("sample_weatherdata");
+
+        queryList = [{ type: "FM-13" }, { callLetters: { $ne: "SHIP" } }];
+        sortByList = [{ callLetters: 1 }, { callLetters: 1, qualityControlProcess: 1 }, { callLetters: 1, qualityControlProcess: 1, elevation: -1 }];
+        matchQuery = queryList[Math.floor(Math.random() * queryList.length)];
+        sortBy = sortByList[Math.floor(Math.random() * sortByList.length)];
+
+        pipeline = [
+          { $match: matchQuery },
+          { $sort: sortBy }
+        ];
+
+        res = await db.collection("data").aggregate(pipeline, { allowDiskUse: true });
+        console.log('executed');
+        break;
+    }
+  }
 };

@@ -1,9 +1,9 @@
 {
-    "name": "Vector",
+    "name": "Demo-Cluster",
     "type": "mongodb-atlas",
     "config": {
-        "clusterName": "Vector",
-        "readPreference": "primary",
+        "clusterName": "Demo-Cluster",
+        "readPreference": "nearest",
         "wireProtocolEnabled": false
     },
     "version": 1

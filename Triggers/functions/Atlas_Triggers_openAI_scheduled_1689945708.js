@@ -2,7 +2,7 @@ exports = async function () {
   const openai_key = context.values.get("openAI_value");
 
   // Get the cluster in MongoDB Atlas.
-  const mongodb = context.services.get('Vector');
+  const mongodb = context.services.get('Demo-Cluster');
   const db = mongodb.db('sample_mflix'); // Replace with your database name.
   const collection = db.collection('movies'); // Replace with your collection name.
 

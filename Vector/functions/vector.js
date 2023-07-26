@@ -23,7 +23,7 @@ async function getEmbedding(query, key) {
 }
 
 async function findSimilarDocuments(embedding) {
-  const mongodb = context.services.get('Vector');
+  const mongodb = context.services.get('Demo-Cluster');
   const db = mongodb.db('sample_mflix');
   const collection = db.collection('movies');
 
@@ -62,7 +62,7 @@ async function findSimilarDocuments(embedding) {
 }
 
 async function findDocuments(q) {
-  const mongodb = context.services.get('Vector');
+  const mongodb = context.services.get('Demo-Cluster');
   const db = mongodb.db('sample_mflix');
   const collection = db.collection('movies');
 

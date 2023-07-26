@@ -135,6 +135,21 @@ img {
   margin: 5px;
   font-size: 14px;
   color: #888;
+  text-decoration: none;
+}
+
+.powered-text:visited {
+  margin: 5px;
+  font-size: 14px;
+  color: #888;
+  text-decoration: none;
+}
+
+.powered-text:focus {
+  margin: 5px;
+  font-size: 14px;
+  color: #888;
+  text-decoration: none;
 }
 
 .container {

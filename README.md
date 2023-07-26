@@ -31,7 +31,7 @@ The page will reload when you make changes.
 
 ## App Service Components
 - [Triggers function](/Triggers/functions/Atlas_Triggers_openAI_scheduled_1689945708.js)
-- [Vector Search function](/Vector/functions/vector.js)
+- [Vector Search function](/Triggers/functions/vector.js)
 
 ## Deploying Changes
 `sh deploy.sh`

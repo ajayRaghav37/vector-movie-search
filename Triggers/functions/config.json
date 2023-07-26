@@ -2,5 +2,11 @@
     {
         "name": "Atlas_Triggers_openAI_scheduled_1689945708",
         "private": false
+    },
+    {
+        "name": "vector",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
     }
 ]

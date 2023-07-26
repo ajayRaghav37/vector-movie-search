@@ -25,7 +25,7 @@ exports = async function () {
       // airbnb query
       console.log('running airbnb query');
 
-      pickRandomCluster = Math.floor(Math.floor(Math.random() * 55)/50);
+      pickRandomCluster = Math.floor(Math.floor(Math.random() * 37)/30);
       cluster = [dedicated, serverless][pickRandomCluster];
       db = cluster.db("sample_airbnb");
 
@@ -54,7 +54,7 @@ exports = async function () {
       // mflix query
       console.log('running movies query');
 
-      pickRandomCluster = Math.floor(Math.floor(Math.random() * 55)/50);
+      pickRandomCluster = Math.floor(Math.floor(Math.random() * 37)/30);
       cluster = [dedicated, serverless][pickRandomCluster];
       db = cluster.db("sample_mflix");
 
@@ -72,7 +72,7 @@ exports = async function () {
       // weather data query
       console.log('running weather query');
 
-      pickRandomCluster = Math.floor(Math.floor(Math.random() * 55)/50);
+      pickRandomCluster = Math.floor(Math.floor(Math.random() * 37)/30);
       cluster = [dedicated, serverless][pickRandomCluster];
       db = cluster.db("sample_weatherdata");
 

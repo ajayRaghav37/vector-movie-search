@@ -4,9 +4,24 @@ exports = async function () {
   const dedicated = context.services.get('Demo-Cluster');
   const serverless = context.services.get('Demo-Serverless');
   const shared = context.services.get('Demo-Shared');
+  let pickRandomCluster;
+  let cluster;
+  let query;
+  let queryTerm;
+  let queryTermList;
+  let sort;
+  let res;
+  let db;
+  let queryList;
+  let queryField;
+  let queryFieldList;
+  let sortByList;
+  let pipeline;
+  let sortBy;
+  let matchQuery;
 
   while (true) {
-    pickRandomQuery = Math.floor(Math.random() * 4);
+    const pickRandomQuery = Math.floor(Math.random() * 4);
     
     switch (pickRandomQuery) {
       case 0:

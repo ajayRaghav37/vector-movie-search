@@ -1,0 +1,10 @@
+{
+    "name": "Demo-Serverless",
+    "type": "mongodb-atlas",
+    "config": {
+        "clusterName": "Demo-Serverless",
+        "readPreference": "nearest",
+        "wireProtocolEnabled": false
+    },
+    "version": 1
+}

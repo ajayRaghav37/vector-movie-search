@@ -1,0 +1,16 @@
+{
+    "name": "SQ",
+    "type": "SCHEDULED",
+    "config": {
+        "schedule": "0 */12 * * *",
+        "skip_catchup_events": false
+    },
+    "disabled": false,
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "Atlas_Triggers_SQ_1690372459"
+            }
+        }
+    }
+}

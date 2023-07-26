@@ -1,0 +1,16 @@
+{
+    "name": "UP",
+    "type": "SCHEDULED",
+    "config": {
+        "schedule": "45 14 * * *",
+        "skip_catchup_events": false
+    },
+    "disabled": false,
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "Atlas_Triggers_UP_1690372854"
+            }
+        }
+    }
+}

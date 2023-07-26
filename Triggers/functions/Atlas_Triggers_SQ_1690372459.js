@@ -20,9 +20,10 @@ exports = async function () {
   let sortBy;
   let matchQuery;
 
-  while (true) {
+  for (let i = 0; i < 100; i++) {
+    await (new Promise(resolve => setTimeout(resolve, 200)));
     const pickRandomQuery = Math.floor(Math.random() * 4);
-    
+
     switch (pickRandomQuery) {
       case 0:
         // airbnb query

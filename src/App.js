@@ -91,7 +91,7 @@ const MovieApp = () => {
   const fetchMovies = async () => {
     try {
       const response = await fetch(
-        `https://ap-south-1.aws.data.mongodb-api.com/app/vector-vkqrr/endpoint/findMovie?m=${selectedOption}&key=${apiKey}&s=${encodeURIComponent(searchQuery)}`
+        `https://ap-south-1.aws.data.mongodb-api.com/app/triggers-jxjsd/endpoint/findMovie?m=${selectedOption}&key=${apiKey}&s=${encodeURIComponent(searchQuery)}`
       );
 
       const similarMovies = (await response.json()).results;

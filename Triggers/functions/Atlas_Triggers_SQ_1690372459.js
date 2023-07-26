@@ -10,7 +10,6 @@ exports = async function () {
   let queryTerm;
   let queryTermList;
   let sort;
-  let res;
   let db;
   let queryList;
   let queryField;
@@ -19,86 +18,78 @@ exports = async function () {
   let pipeline;
   let sortBy;
   let matchQuery;
+  let promises = [];
 
   for (let i = 0; i < 1000; i++) {
     await (new Promise(resolve => setTimeout(resolve, 200)));
-    const pickRandomQuery = Math.floor(Math.random() * 4);
 
-    switch (pickRandomQuery) {
-      case 0:
-        // airbnb query
-        console.log('running airbnb query');
+    // airbnb query
+    console.log('running airbnb query');
 
-        pickRandomCluster = Math.floor(Math.random() * 2);
-        cluster = [dedicated, serverless][pickRandomCluster];
-        db = cluster.db("sample_airbnb");
+    pickRandomCluster = Math.floor(Math.random() * 2);
+    cluster = [dedicated, serverless][pickRandomCluster];
+    db = cluster.db("sample_airbnb");
 
-        queryTermList = ["home", "new", "charming", "cosy"];
-        queryTerm = queryTermList[Math.floor(Math.random() * queryTermList.length)];
-        query = { description: { $regex: `.*${queryTerm}.*`, $options: "i" }, };
-        sort = {};
-        sort[queryTerm] = 1;
+    queryTermList = ["home", "new", "charming", "cosy"];
+    queryTerm = queryTermList[Math.floor(Math.random() * queryTermList.length)];
+    query = { description: { $regex: `.*${queryTerm}.*`, $options: "i" }, };
+    sort = {};
+    sort[queryTerm] = 1;
 
-        res = await db.collection("listingsAndReviews").find(query).sort(sort);
-        console.log('executed');
-        break;
-      case 1:
-        // grades query
-        console.log('running grades query');
+    promises.push(db.collection("listingsAndReviews").find(query).sort(sort));
 
-        pickRandomCluster = Math.floor(Math.random() * 1);
-        cluster = [dedicated][pickRandomCluster];
-        db = cluster.db("sample_training");
+    // grades query
+    console.log('running grades query');
 
-        queryTermList = ["exam", "quiz", "homework"];
-        queryTerm = queryTermList[Math.floor(Math.random() * queryTermList.length)];
-        query = { "scores.type": queryTerm };
-        sort = { student_id: 1, class_id: 1 };
+    pickRandomCluster = Math.floor(Math.random() * 1);
+    cluster = [dedicated][pickRandomCluster];
+    db = cluster.db("sample_training");
 
-        res = await db.collection("grades").find(query).sort(sort);
-        console.log('executed');
-        break;
-      case 2:
-        // mflix query
-        console.log('running movies query');
+    queryTermList = ["exam", "quiz", "homework"];
+    queryTerm = queryTermList[Math.floor(Math.random() * queryTermList.length)];
+    query = { "scores.type": queryTerm };
+    sort = { student_id: 1, class_id: 1 };
 
-        pickRandomCluster = Math.floor(Math.random() * 2);
-        cluster = [dedicated, serverless][pickRandomCluster];
-        db = cluster.db("sample_mflix");
+    promises.push(db.collection("grades").find(query).sort(sort));
 
-        queryFieldList = ["plot", "title", "fullplot"];
-        queryTermList = ["hero", "drama", "disaster", "horror"];
-        queryField = queryFieldList[Math.floor(Math.random() * queryFieldList.length)];
-        queryTerm = queryTermList[Math.floor(Math.random() * queryTermList.length)];
-        query = {};
-        query[queryField] = { $regex: `.*${queryTerm}.*`, $options: "i" };
-        sort = {};
-        sort[queryTerm] = 1;
+    // mflix query
+    console.log('running movies query');
 
-        res = await db.collection("movies").find(query).sort(sort);
-        console.log('executed');
-        break;
-      case 3:
-        // weather data query
-        console.log('running weather query');
+    pickRandomCluster = Math.floor(Math.random() * 2);
+    cluster = [dedicated, serverless][pickRandomCluster];
+    db = cluster.db("sample_mflix");
 
-        pickRandomCluster = Math.floor(Math.random() * 2);
-        cluster = [dedicated, serverless][pickRandomCluster];
-        db = cluster.db("sample_weatherdata");
+    queryFieldList = ["plot", "title", "fullplot"];
+    queryTermList = ["hero", "drama", "disaster", "horror"];
+    queryField = queryFieldList[Math.floor(Math.random() * queryFieldList.length)];
+    queryTerm = queryTermList[Math.floor(Math.random() * queryTermList.length)];
+    query = {};
+    query[queryField] = { $regex: `.*${queryTerm}.*`, $options: "i" };
+    sort = {};
+    sort[queryTerm] = 1;
 
-        queryList = [{ type: "FM-13" }, { callLetters: { $ne: "SHIP" } }];
-        sortByList = [{ callLetters: 1 }, { callLetters: 1, qualityControlProcess: 1 }, { callLetters: 1, qualityControlProcess: 1, elevation: -1 }];
-        matchQuery = queryList[Math.floor(Math.random() * queryList.length)];
-        sortBy = sortByList[Math.floor(Math.random() * sortByList.length)];
+    promises.push(db.collection("movies").find(query).sort(sort));
 
-        pipeline = [
-          { $match: matchQuery },
-          { $sort: sortBy }
-        ];
+    // weather data query
+    console.log('running weather query');
 
-        res = await db.collection("data").aggregate(pipeline, { allowDiskUse: true });
-        console.log('executed');
-        break;
-    }
+    pickRandomCluster = Math.floor(Math.random() * 2);
+    cluster = [dedicated, serverless][pickRandomCluster];
+    db = cluster.db("sample_weatherdata");
+
+    queryList = [{ type: "FM-13" }, { callLetters: { $ne: "SHIP" } }];
+    sortByList = [{ callLetters: 1 }, { callLetters: 1, qualityControlProcess: 1 }, { callLetters: 1, qualityControlProcess: 1, elevation: -1 }];
+    matchQuery = queryList[Math.floor(Math.random() * queryList.length)];
+    sortBy = sortByList[Math.floor(Math.random() * sortByList.length)];
+
+    pipeline = [
+      { $match: matchQuery },
+      { $sort: sortBy }
+    ];
+
+    promises.push(db.collection("data").aggregate(pipeline, { allowDiskUse: true }));
+
+    await Promise.all(promises);
+    console.log('executed');
   }
 };

@@ -1,23 +1,29 @@
-exports = function() {
+exports = async function () {
   // Unpause cluster
-  /*
-    A Scheduled Trigger will always call a function without arguments.
-    Documentation on Triggers: https://www.mongodb.com/docs/atlas/app-services/triggers/overview/
 
-    Functions run by Triggers are run as System users and have full access to Services, Functions, and MongoDB Data.
+  try {
+    const username = context.values.get("AtlasPublicKey");
+    const password = context.values.get("AtlasPrivateKey");
+    const projectId = '620531240191d10e7accbff5';
+    const clusterName = 'Demo-Cluster';
 
-    Access a mongodb service:
-    const collection = context.services.get(<SERVICE_NAME>).db("db_name").collection("coll_name");
-    const doc = collection.findOne({ name: "mongodb" });
+    const body = { paused: false };
 
-    Note: In Atlas Triggers, the service name is defaulted to the cluster name.
+    const arg = {
+      scheme: 'https',
+      host: 'cloud.mongodb.com',
+      path: 'api/atlas/v1.0/groups/' + projectId + '/clusters/' + clusterName,
+      username: username,
+      password: password,
+      headers: { 'Content-Type': ['application/json'], 'Accept-Encoding': ['bzip, deflate'] },
+      digestAuth: true,
+      body: JSON.stringify(body)
+    };
 
-    Call other named functions if they are defined in your application:
-    const result = context.functions.execute("function_name", arg1, arg2);
-
-    Access the default http client and execute a GET request:
-    const response = context.http.get({ url: <URL> })
-
-    Learn more about http client here: https://www.mongodb.com/docs/atlas/app-services/functions/context/#std-label-context-http
-  */
+    response = await context.http.patch(arg);
+    console.log(response.body.text());
+  }
+  catch (e) {
+    console.error(e);
+  }
 };

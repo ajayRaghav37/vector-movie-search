@@ -13,9 +13,9 @@ You will have to enter your own API key while trying out Vector Search.
 Standard Search is based on just stemming, lemmatization and tokenization. This does not produce relevant results as it is based on keywords more or less.\
 Vector Search allows you to search with embeddings. Compare the results yourself.\
 \
-Try out some free text plots like:
+Try out some free-text plots like:
 - _a business tycoon is captured in war zone and then gets out of it by using science_
-- _kids engage in something like monopoly which brings animals out of it causing havoc_
+- _alien stuck on earth is saved and sent back by a group of kids_
 - _a man who forgets things after some time takes revenge for the killer of his beloved_
 
 ## Available Scripts

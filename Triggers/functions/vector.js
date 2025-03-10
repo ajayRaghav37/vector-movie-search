@@ -30,13 +30,12 @@ async function findSimilarDocuments(embedding) {
   try {
     const documents = await collection.aggregate([
       {
-        "$search": {
+        "$vectorSearch": {
           "index": "default",
-          "knnBeta": {
-            "vector": embedding,
-            "path": "plot_embedding",
-            "k": 5
-          }
+          "path": "plot_embedding",
+          "queryVector": embedding,
+          "numCandidates": 100,
+          'limit': 5
         }
       },
       {

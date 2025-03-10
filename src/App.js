@@ -52,16 +52,15 @@ const MovieApp = () => {
 
     if (selectedOption === 'Vector') {
       currCode = `
-  // getEmbeddings function can leverage OpenAI API or something similar
+  // getEmbeddings function can leverage any embedding model from OpenAI, etc.
 
   {
-    "$search": {
+    "$vectorSearch": {
       "index": "default",
-      "knnBeta": {
-        "vector": getEmbeddings("${searchQuery}"),
-        "path": "plot_embedding",
-        "k": 5
-      }
+      "path": "plot_embedding",
+      "queryVector": getEmbeddings("${searchQuery}"),
+      "numCandidates": 100,
+      "limit": 5
     }
   }`;
     }
